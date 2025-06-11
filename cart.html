@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="index.html"><div class="logo">SUN CO.Accueil</div></a>
+      <a href="cart.html"><button class="cart-btn">🛒 View Cart</button></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="cart-section">
+      <h2>Your Bag</h2>
+        <a href="shop.html">
+            <button class="shop-now">Shop Now ➜</button>
+        </a>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <p>Total: <span id="totalAmount">$0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- <footer>
+    <div class="footer-content">
+      <div class="logo">SUN CO.</div>
+      <p>© 2025 dot.cards test task. All rights reserved</p>
+    </div>
+  </footer> -->
+
+  <script>
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItems = document.getElementById("cartItems");
+      const totalAmount = document.getElementById("totalAmount");
+
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" width="100">
+            <div class="item-info">
+              <h3>${item.name}</h3>
+              <p>${item.description}</p>
+              <p>Quantity: ${item.quantity}</p>
+              <p>Price: $${item.price.toFixed(2)}</p>
+              <p>Total: $${itemTotal.toFixed(2)}</p>
+              <button onclick="removeItem(${index})">🗑 Remove</button>
+            </div>
+          </div>
+        `;
+      });
+
+      totalAmount.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function removeItem(index) {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart();
+    }
+
+    function checkout() {
+      alert("Thank you for your purchase!");
+      localStorage.removeItem("cart");
+      loadCart();
+    }
+
+    window.onload = loadCart;
+
+    function loadCart() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItems = document.getElementById("cartItems");
+        const totalAmount = document.getElementById("totalAmount");
+
+        cartItems.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+
+            cartItems.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="item-info">
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <div class="quantity-controls">
+                    <button onclick="updateQuantity(${index}, -1)">−</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+                <p>Price: $${item.price.toFixed(2)}</p>
+                <p>Total: $${itemTotal.toFixed(2)}</p>
+                <button onclick="removeItem(${index})">Remove</button>
+                </div>
+            </div>
+            `;
+        });
+
+        totalAmount.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function updateQuantity(index, change) {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart[index].quantity += change;
+        if (cart[index].quantity <= 0) cart[index].quantity = 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCart();
+        }
+  </script>
+</body>
+</html>
