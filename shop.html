@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <a href="index.html">
+          <div class="logo"> SUN CO.Accueil</div>
+      </a>
+      <a href="cart.html"><button class="cart-btn">🛒 View Cart</button></a>
+    </div>
+  </header>
+
+  <main class="product-container">
+    <div class="carousel">
+      <button class="arrow left" onclick="prevImage()">&#10094;</button>
+      <img id="productImage" src="Img/Screenshot 2025-06-07 1053465.png">
+      <button class="arrow right" onclick="nextImage()">&#10095;</button>
+    </div>
+
+    <div class="product-info">
+      <h2>Adidas</h2><!--CA DOIS CHANGER SELON SA PROPRE NOM-->
+      <p class="subtitle">DAILY 3.0 SHOES</p>
+      <p class="price" id="priceDisplay">$98.99</p>
+
+      <div class="quantity">
+        <label>Quantity</label>
+        <div class="counter">
+          <button onclick="decreaseQuantity()">−</button>
+          <span id="qty">1</span>
+          <button onclick="increaseQuantity()">+</button>
+        </div>
+      </div>
+
+      <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+
+    </div>
+  </main>
+
+    <section class="description">
+        <div class="description-wrapper">
+            
+            <div class="description-text">
+                <h3>Description</h3>
+                <p>
+                    Energize your look with a fresh take on heritage adidas style.<br> 
+                    The adidas Daily 3.0 Shoes cut a classic profile with a modern suede upper.<br> 
+                    Your walk across campus or commute across town has never looked or felt this good.
+                </p>
+                <ul>
+                    <li>Regular fit</li>
+                    <li>Lace closure</li>
+                    <li>Rubber outsole with vulcanized look</li>
+                    <li>Imported</li>
+                </ul>
+            </div>
+            <div class="description-image">
+              <div class="image-container">
+                <img src="Img/Screenshot 2025-06-07 1215036.png" alt="Image produit" />
+              </div>
+            </div>
+        </div>
+    </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="logo"> SUN CO.</div>
+      <p> 2025 dot.cards test task. All rights reserved</p>
+      <div class="social-icons">
+        <span class="icon instagram"></span>
+        <span class="icon youtube"></span>
+        <span class="icon twitter"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
